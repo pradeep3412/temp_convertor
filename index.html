@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Temperature Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 300px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 20px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+        }
+        h1 {
+            color: #333;
+        }
+        #tempInput {
+            width: 100%;
+            padding: 5px;
+            margin: 10px 0;
+        }
+        #fromUnit, #toUnit {
+            width: 100%;
+            padding: 5px;
+        }
+        #result {
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        button {
+            background-color: #008CBA;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Temperature Converter</h1>
+        <input type="number" id="tempInput" placeholder="Enter Temperature" step="0.01">
+        <select id="fromUnit">
+            <option value="celsius">Celsius</option>
+            <option value="fahrenheit">Fahrenheit</option>
+        </select>
+        <select id="toUnit">
+            <option value="celsius">Celsius</option>
+            <option value="fahrenheit">Fahrenheit</option>
+        </select>
+        <button id="convertBtn">Convert</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        document.getElementById("convertBtn").addEventListener("click", function() {
+            const tempInput = parseFloat(document.getElementById("tempInput").value);
+            const fromUnit = document.getElementById("fromUnit").value;
+            const toUnit = document.getElementById("toUnit").value;
+            let result;
+
+            if (fromUnit === "celsius" && toUnit === "fahrenheit") {
+                result = (tempInput * 9/5) + 32;
+            } else if (fromUnit === "fahrenheit" && toUnit === "celsius") {
+                result = (tempInput - 32) * 5/9;
+            } else {
+                result = tempInput; // If same units are selected
+            }
+
+            document.getElementById("result").textContent = `Result: ${result.toFixed(2)} ${toUnit}`;
+        });
+    </script>
+</body>
+</html>
